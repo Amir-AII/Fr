@@ -4,16 +4,17 @@ from PIL import Image
 import numpy as np
 import os
 import requests
-
+import gdown
 model_path = "pneumonia_densenet121.h5"
 
 # Eğer model yoksa indir
 if not os.path.exists(model_path):
     print("📥 Model indiriliyor...")
-    url = "https://drive.google.com/uc?id=1bnymkLz41lUlEiV5IYIxgnI1K8wkw10q"
-    r = requests.get(url, allow_redirects=True)
-    with open(model_path, 'wb') as f:
-        f.write(r.content)
+
+model_url = "https://drive.google.com/uc?id=1bnymkLz41lUlEiV5IYIxgnI1K8wkw10q"
+if not os.path.exists(model_path):
+    print("📥 Model indiriliyor (gdown)...")
+    gdown.download(model_url, model_path, quiet=False)
     print("✅ Model indirildi.")
 
 # Modeli yükle
