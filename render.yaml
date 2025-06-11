@@ -3,6 +3,6 @@ services:
     name: pneumonia-detection
     env: python
     buildCommand: |
-      pip install --upgrade pip
+      pip install --upgrade pip setuptools wheel
       pip install -r requirements.txt
     startCommand: python app.py
